@@ -5,6 +5,15 @@ import streamlit as st
 from datetime import datetime
 
 st.title("Unity Dashboard")
+
+# Display distractions log table
+show_logs = st.checkbox("Show Distractions Log Table")
+if show_logs:
+    st.write("## Distractions Log")
+    with open("../unity-camera/log.txt", "r") as f:
+        data = f.read().splitlines()
+    st.table(data)
+
 name = st.text_input("Enter your name", max_chars=50)
 
 if name:
@@ -13,7 +22,6 @@ if name:
     r = requests.get(url)
 
     data = r.json()["distractions"]
-    # sample 2023-07-01T16:54:36.920Z
     now = datetime.now()
     distracted_hours = [
         distraction["time"].split("T")[1][0:2]
