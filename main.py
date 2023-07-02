@@ -14,7 +14,9 @@ if show_logs:
         data = f.read().splitlines()
     st.table(data)
 
-name = st.text_input("Enter your name", max_chars=50)
+name = st.selectbox(
+    "Select student name", ["Dastan Özgeldi", "Aslan Saken", "Bakkozha Makhabbat"]
+)
 
 if name:
     BASE_URL = "http://127.0.0.1:8000/dashboard/get_distractions"
